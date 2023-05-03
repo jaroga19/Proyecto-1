@@ -1,0 +1,517 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-image: url(/img/fondo-juego.jpg);
+  background-size: cover;
+}
+body {
+  min-height: 365px;
+  height: 100vh;
+  font-family: sans-serif;
+  font-weight: bold;
+  display: grid;
+  grid-template:
+    'header' 5rem
+    'nav' 1.5rem
+    'main' 1fr
+    'footer' 3rem;
+}
+
+header {
+  grid-area: header;
+  min-height: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+h1 {
+  margin-top: 0.5rem;
+  text-align: center;
+  font-family: 'Rubik Mono One';
+  font-size: 2rem;
+  color: #ffffff;
+  text-shadow: 0px 0px 50px #f6f9fc;
+}
+#modalBienve {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65);
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+section > h2 {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  text-decoration: underline;
+}
+.instrucciones {
+  font-family: 'Rubik Mono One';
+  font-size: 10px;
+  text-align: justify;
+}
+#modaleBoxB {
+  width: 100vw;
+  height: 75vh;
+  background: linear-gradient(150deg, #bb58e9, #b4b3b1, #545657);
+  position: absolute;
+  font-family: 'Rubik Mono One';
+  font-size: 25px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 25px;
+  align-items: center;
+  text-align: center;
+  border-radius: 25px;
+  animation: BgGradient 10s ease infinite;
+}
+
+@keyframes BgGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+    background: linear-gradient(150deg, #c057e9, #b3c3b3, #465a64);
+  }
+  100% {
+    background-position: 200% 50%;
+    background: linear-gradient(150deg, #bb58e9, #b4b3b1, #545657);
+  }
+}
+
+#modaleBoxB > h1 {
+  font-family: 'Rubik Mono One';
+  font-size: 65px;
+  margin-bottom: 50px;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff;
+}
+
+#modaleBoxB > button {
+  border: 0;
+  background-image: linear-gradient(150deg, #bb58e9, #b4b3b1, #545657);
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  padding: 20px 40px;
+  color: #fff;
+  display: flex;
+  font-family: 'Rubik Mono One';
+  font-size: 2rem;
+  font-size: 18px;
+  padding: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#modaleBoxB > button:hover {
+  color: #111;
+  transform: scale(1.4);
+  border: 2px solid #000;
+  transition: all 0.3s ease-in-out;
+}
+#modaleBoxB button span {
+  background-color: #111;
+  padding: 14px 24px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+#modaleBoxB button:hover span {
+  background: none;
+}
+#modaleBoxB button:active {
+  transform: scale(0.9);
+}
+
+main {
+  grid-area: main;
+  display: grid;
+  grid-template-rows: repeat(4, 130px);
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
+}
+img {
+  height: 2rem;
+  width: 2rem;
+}
+#counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
+  color: #fff;
+  font-size: 1rem;
+}
+
+.card {
+  width: 3.7rem;
+  height: 5.6rem;
+  perspective: 80px;
+  margin: 0.5rem;
+}
+
+.content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+.front {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: radial-gradient(circle at center, #ddd 0%, #777 100%);
+  display: grid;
+  place-content: center;
+  font-size: 8rem;
+  border-radius: 0.5rem;
+  backface-visibility: hidden;
+  user-select: none;
+  animation: colorChange 5s ease infinite;
+}
+
+@keyframes colorChange {
+  0% {
+    background: radial-gradient(circle at center, #ddd 0%, #777 100%);
+  }
+  50% {
+    background: radial-gradient(circle at center, #aaa 0%, #444 100%);
+  }
+  100% {
+    background: radial-gradient(circle at center, #ddd 0%, #777 100%);
+  }
+}
+.front {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(45deg, #222 25%, transparent 25%),
+    linear-gradient(-45deg, #222 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #222 75%),
+    linear-gradient(-45deg, transparent 75%, #222 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+  animation: color-change 5s infinite;
+}
+
+@keyframes color-change {
+  0% {
+    filter: grayscale(100%);
+  }
+  50% {
+    filter: grayscale(50%);
+  }
+  100% {
+    filter: grayscale(100%);
+  }
+}
+.front {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(45deg, #222 25%, transparent 25%),
+    linear-gradient(-45deg, #222 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #222 75%),
+    linear-gradient(-45deg, transparent 75%, #222 75%),
+    linear-gradient(#777, #777),
+    radial-gradient(circle, #fff 20%, transparent 20.01%);
+  background-size: 20px 20px, 20px 20px, 20px 20px, 20px 20px, cover,
+    200px 200px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px, center, center;
+  animation: color-change 5s infinite;
+}
+
+@keyframes color-change {
+  0% {
+    filter: grayscale(100%);
+  }
+  50% {
+    filter: grayscale(50%);
+  }
+  100% {
+    filter: grayscale(100%);
+  }
+}
+
+.back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-content: center;
+  font-size: 3rem;
+  border-radius: 0.5rem;
+  backface-visibility: hidden;
+  user-select: none;
+  background-color: rgba(255, 255, 255, 0.071);
+  transform: rotateY(180deg);
+  box-shadow: 0.1px 5px 5px 5px rgba(10, 6, 6, 0.165);
+}
+.card.flipped .content {
+  transform: rotateY(180deg);
+  transition: transform 0.5s;
+}
+
+.card.matched {
+  filter: saturate(180%);
+  border-radius: 0.5rem;
+  background: greenyellow;
+}
+
+.botonReinicio {
+  border: 0;
+  background-image: linear-gradient(150deg, #bb58e9, #b4b3b1, #545657);
+  border-radius: 8px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 40px;
+  color: #fff;
+  display: flex;
+  font-family: 'Rubik Mono One';
+  font-size: 2rem;
+  font-size: 18px;
+  padding: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.botonReinicio span {
+  background-color: #111;
+  padding: 7px 12px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+.botonReinicio button:hover span {
+  background: none;
+}
+.botonReinicio button:active {
+  transform: scale(0.9);
+}
+
+@media (min-width: 375px) {
+  #modaleBoxB {
+    width: 80vw;
+    height: 80vh;
+  }
+  #counter {
+    margin-top: 2rem;
+  }
+}
+
+@media (min-width: 425px) {
+  .card {
+    width: 80px;
+    height: 110px;
+    perspective: 600px;
+    margin: 0.5rem;
+  }
+  #counter {
+    font-size: 1rem;
+    margin-top: 2rem;
+  }
+  #modaleBoxB {
+    width: 80vw;
+    height: 70vh;
+  }
+}
+
+@media (min-width: 768px) {
+  .card {
+    width: 100px;
+    height: 140px;
+    perspective: 600px;
+    margin: 0.5rem;
+  }
+  h1 {
+    margin-top: 2rem;
+    text-align: center;
+    font-family: 'Rubik Mono One';
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 0px 0px 50px #f6f9fc;
+  }
+  #counter {
+    font-size: 1.2rem;
+    margin-top: 2.5rem;
+  }
+  html {
+    background-image: url(/img/fondo-juego.jpg);
+    background-size: cover;
+  }
+  img {
+    height: 3rem;
+    width: 3rem;
+  }
+  #modaleBoxB {
+    width: 80vw;
+    height: 50vh;
+  }
+
+  .instrucciones {
+    font-size: 15px;
+  }
+  .back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    font-size: 4.5rem;
+    border-radius: 0.5rem;
+    backface-visibility: hidden;
+    user-select: none;
+    background-color: rgba(255, 255, 255, 0.071);
+    transform: rotateY(180deg);
+    box-shadow: 0.1px 5px 5px 5px rgba(10, 6, 6, 0.165);
+  }
+  main {
+    grid-template-rows: repeat(4, 190px);
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    min-height: 365px;
+    height: 100vh;
+    font-family: sans-serif;
+    font-weight: bold;
+    display: grid;
+    grid-template:
+      'header' 5rem
+      'nav' 1.5rem
+      'main' 1fr
+      'footer' 8rem;
+  }
+  .card {
+    width: 130px;
+    height: 170px;
+    perspective: 600px;
+    margin: 0.5rem;
+  }
+  .instrucciones {
+    font-size: 20px;
+
+    padding-top: 2rem;
+  }
+  #modaleBoxB {
+    width: 90vw;
+    height: 60vh;
+  }
+  h1 {
+    text-align: center;
+    font-family: 'Rubik Mono One';
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 0px 0px 50px #f6f9fc;
+  }
+  #counter {
+    font-size: 1.5rem;
+    margin-top: 4rem;
+  }
+  img {
+    height: 4rem;
+    width: 4rem;
+  }
+  .back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    font-size: 5rem;
+    border-radius: 0.5rem;
+    backface-visibility: hidden;
+    user-select: none;
+    background-color: rgba(255, 255, 255, 0.071);
+    transform: rotateY(180deg);
+    box-shadow: 0.1px 5px 5px 5px rgba(10, 6, 6, 0.165);
+  }
+  main {
+    display: grid;
+    grid-template-rows: repeat(2, 250px);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;
+    align-content: center;
+  }
+}
+@media (min-width: 1350px) {
+  body {
+    min-height: 365px;
+    height: 100vh;
+    font-family: sans-serif;
+    font-weight: bold;
+    display: grid;
+    grid-template:
+      'header' 5rem
+      'nav' 1.5rem
+      'main' 1fr
+      'footer' 8rem;
+  }
+  .card {
+    width: 130px;
+    height: 170px;
+    perspective: 600px;
+    margin: 0.5rem;
+  }
+  .instrucciones {
+    font-size: 20px;
+
+    padding-top: 5rem;
+  }
+  .instrucciones > p {
+    font-size: 25px;
+  }
+  #modaleBoxB {
+    width: 90vw;
+    height: 60vh;
+  }
+  h1 {
+    text-align: center;
+    font-family: 'Rubik Mono One';
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 0px 0px 50px #f6f9fc;
+  }
+  #counter {
+    font-size: 1.5rem;
+    margin-top: 5rem;
+  }
+  img {
+    height: 4rem;
+    width: 4rem;
+  }
+  .back {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    font-size: 5rem;
+    border-radius: 0.5rem;
+    backface-visibility: hidden;
+    user-select: none;
+    background-color: rgba(255, 255, 255, 0.071);
+    transform: rotateY(180deg);
+    box-shadow: 0.1px 5px 5px 5px rgba(10, 6, 6, 0.165);
+  }
+  main {
+    grid-template-rows: repeat(2, 250px);
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
